@@ -1,10 +1,10 @@
 import React from 'react';
 
-import {useFetchLogoUrl} from '../data/fetch_target_price';
+import useFetchTargetPrice from '../data/fetch_target_price';
 
 const PriceTarget = ({symbol}) => {
 
-  const {priceTarget, loading, error} = useFetchLogoUrl(symbol);
+  const {priceTarget, loading, error} = useFetchTargetPrice(symbol);
 
   if(error || loading) return <p>loading</p>
   const {updatedDate, priceTargetAverage, priceTargetHigh, priceTargetLow, numberOfAnalysts} = priceTarget;

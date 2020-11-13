@@ -2,7 +2,7 @@
 import useAxios from 'axios-hooks'
 import { getDailyStockPriceUrl } from "./api_config";
 
-export const useFetchDailyPrice = (symbol, date) => {
+const useFetchDailyPrice = (symbol, date) => {
 
   let [{ data, loading, error }, refetch] = useAxios(
     getDailyStockPriceUrl(symbol, date)
@@ -18,5 +18,7 @@ export const useFetchDailyPrice = (symbol, date) => {
     loading,
     error
   };
-
 };
+
+export default useFetchDailyPrice;
+

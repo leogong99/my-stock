@@ -1,4 +1,4 @@
-import React, { useState, Suspense } from 'react';
+import React, { useState } from 'react';
 import 'react-calendar/dist/Calendar.css';
 
 import StockSymbol from '../components/StockSymbol';
@@ -6,7 +6,7 @@ import Calendar from '../components/Calendar';
 
 import ErrorBoundary from "../components/ErrorBoundary";
 
-import { useFetchDailyPrice } from '../data/fetch_daily';
+import useFetchDailyPrice from '../data/fetch_daily';
 
 
 import Select from '@material-ui/core/Select';
@@ -43,8 +43,6 @@ const Content = () => {
   const [chart, setChart] = useState('DailyChart')
   
   const { data,  error } = useFetchDailyPrice(symbol, date.split('-').join(""));
-  
-  if (error) return <p>Error!</p>
 
   const handleChange = (event) => {
     setChart( event.target.value );
@@ -82,28 +80,32 @@ const Content = () => {
               onChange={(date)=>{setDate(date)}}
             />
           </div>
-          <ErrorBoundary>
-            <div className="chart-container">
-              {getRenderingComponent()}
+
+          {!error && 
+          <>
+            <ErrorBoundary>
+              <div className="chart-container">
+                {getRenderingComponent()}
+              </div>
+            </ErrorBoundary>
+            <div className="flex-center">
+              <Select
+                native
+                value={chart}
+                onChange={handleChange}
+                inputProps={{
+                  name: 'chart',
+                  id: 'chart-select',
+                }}
+              >
+                {chartOptions.map((chartOption) => {
+                  return (
+                    <option key={chartOption.label} value={chartOption.value}>{chartOption.label}</option>
+                  );
+                })}
+              </Select>
             </div>
-          </ErrorBoundary>
-          <div className="flex-center">
-            <Select
-              native
-              value={chart}
-              onChange={handleChange}
-              inputProps={{
-                name: 'chart',
-                id: 'chart-select',
-              }}
-            >
-              {chartOptions.map((chartOption) => {
-                return (
-                  <option key={chartOption.label} value={chartOption.value}>{chartOption.label}</option>
-                );
-              })}
-            </Select>
-          </div>
+          </>}
         </div>
       </div>
     </main>

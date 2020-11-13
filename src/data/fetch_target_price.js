@@ -2,7 +2,7 @@
 import useAxios from 'axios-hooks'
 import { getTargetPriceUrl } from "./api_config";
 
-export const useFetchLogoUrl = (symbol) => {
+const useFetchTargetPrice = (symbol) => {
   const [{ data, loading, error }, refetch] = useAxios(
     getTargetPriceUrl(symbol)
   );
@@ -16,3 +16,5 @@ export const useFetchLogoUrl = (symbol) => {
   };
 
 };
+
+export default useFetchTargetPrice;
