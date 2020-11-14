@@ -1,7 +1,7 @@
 import { Chart } from "react-google-charts";
 import React from 'react';
 
-const DailyChart = ({data}) => {
+const DailyChart = ({data, symbol}) => {
 
   const charData = data.map( price=>{
     return [price.label, price.average];
@@ -11,14 +11,13 @@ const DailyChart = ({data}) => {
       <Chart
         chartType="LineChart"
         data={[[{
-          type: "string",
-          id: "time"
+          type: "string"
         }, {
-          type: "number"
+          type: "number",
+          label: symbol
         }], ...charData]}
         width="100%"
         height="400px"
-        legendToggle
       />
     </div>
   );

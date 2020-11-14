@@ -58,7 +58,7 @@ const Content = () => {
       )
     }
     return (
-      <ChartComponent data={data} />
+      <ChartComponent data={data} symbol={symbol}/>
     )
   }
 
@@ -66,19 +66,14 @@ const Content = () => {
     <main role="main" className="flex-shrink-0 mt-5">
       <div className="container content">
         <div className="main-content">
-          <div className="flex-center mt-4">
+          <div className="d-flex justify-content-center mt-4">
             <StockSymbol 
               symbol={symbol}
               onChange={symbol=>setSymbol(symbol)}
             />
           </div>
-          <div className="flex-center">
+          <div className="d-flex justify-content-center">
             <Logo symbol={symbol} />
-          </div>
-          <div className="flex-center">
-            <Calendar 
-              onChange={(date)=>{setDate(date)}}
-            />
           </div>
 
           {!error && 
@@ -88,7 +83,7 @@ const Content = () => {
                 {getRenderingComponent()}
               </div>
             </ErrorBoundary>
-            <div className="flex-center">
+            <div className="d-flex justify-content-around">
               <Select
                 native
                 value={chart}
@@ -104,6 +99,9 @@ const Content = () => {
                   );
                 })}
               </Select>
+              <Calendar 
+                onChange={(date)=>{setDate(date)}}
+              />
             </div>
           </>}
         </div>

@@ -31,11 +31,9 @@ export const searchSymbolUrl = (fragment) => {
 }
 
 export const getCompanyIconUrl = (symbol) => {
-  const {API_URL, TOKEN} = getURLandToken();
   return `${PROD_API_URL}/stock/${symbol}/logo?token=${PROD_TOKEN}`;
 }
 
 export const getTargetPriceUrl = (symbol) => {
-  const {API_URL, TOKEN} = getURLandToken();
-  return `${API_URL}/stock/${symbol}/price-target?token=${TOKEN}`;
+  return `${TEST_API_URL}/stock/${symbol}/price-target?token=${TEST_TOKEN}`;
 }

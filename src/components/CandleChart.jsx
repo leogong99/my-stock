@@ -1,7 +1,7 @@
 import { Chart } from "react-google-charts";
 import React from 'react';
 
-const CandleChart = ({data}) => {
+const CandleChart = ({data, symbol}) => {
 
   const charData = data.map( price=>{
     return [price.label, price.low, price.open, price.close, price.high];
@@ -16,7 +16,8 @@ const CandleChart = ({data}) => {
             id: "time"
           },
           {
-            type: "number"
+            type: "number",
+            label: symbol
           },
           {
             type: "number"
@@ -30,7 +31,6 @@ const CandleChart = ({data}) => {
         ], ...charData]}
         width="100%"
         height="400px"
-        legendToggle
       />
     </div>
   );
