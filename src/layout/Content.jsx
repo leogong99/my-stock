@@ -7,6 +7,7 @@ import Calendar from '../components/Calendar';
 import ErrorBoundary from "../components/ErrorBoundary";
 
 import useFetchDailyPrice from '../data/fetch_daily';
+import {getTodayStr} from '../helpers/utils';
 
 
 import Select from '@material-ui/core/Select';
@@ -38,7 +39,7 @@ const Content = () => {
     PriceTarget: PriceTarget
   };
 
-  const [date, setDate] = useState("2020-10-13");
+  const [date, setDate] = useState(getTodayStr());
   const [symbol, setSymbol] = useState('AAPL');
   const [chart, setChart] = useState('DailyChart')
   
@@ -47,8 +48,6 @@ const Content = () => {
   const handleChange = (event) => {
     setChart( event.target.value );
   }
-
-  const ChartComponent = chartMap[chart];
 
   const getRenderingComponent = () => {
     const ChartComponent = chartMap[chart];
@@ -99,9 +98,9 @@ const Content = () => {
                   );
                 })}
               </Select>
-              <Calendar 
+              {chart !== 'PriceTarget' && <Calendar 
                 onChange={(date)=>{setDate(date)}}
-              />
+              />}
             </div>
           </>}
         </div>

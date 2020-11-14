@@ -6,3 +6,8 @@ export const getParameterByName = (name, url = window.location.href) => {
   if (!results[2]) return '';
   return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
+
+export const getTodayStr = () => {
+  const today = new Date();
+  return `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+}

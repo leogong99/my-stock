@@ -1,6 +1,7 @@
 import React from 'react';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import TextField from "@material-ui/core/TextField";
+import {getTodayStr} from '../helpers/utils';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -24,7 +25,7 @@ function Calendar({onChange}) {
         id="date"
         label="Date"
         type="date"
-        defaultValue={"2020-10-13"}
+        defaultValue={getTodayStr()}
         onChange={(event)=>{onChange(event.currentTarget.value)}}
         className={classes.textField}
         InputLabelProps={{
