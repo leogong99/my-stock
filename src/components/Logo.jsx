@@ -5,10 +5,15 @@ import "./Logo.scss";
 
 const Logo = ({symbol}) => {
 
-  const { url, error} = useFetchLogoUrl(symbol);
+  const { url, loading, error} = useFetchLogoUrl(symbol);
   if(error) {
     return (
       <span>Please verify the stock symbol</span>
+    );
+  }
+  if(loading) {
+    return (
+      <span>loading...</span>
     );
   }
   return (
