@@ -1,15 +1,11 @@
 import { Chart } from "react-google-charts";
 import React from 'react';
 
+import {bindingData} from '../helpers/utils';
+
 const CandleChart = ({data, symbol}) => {
 
-  const charData = [];
-  data.map( price=>{
-    if(parseInt(price.minute.split(":")) === 15) {
-      charData.push([price.label, price.low, price.open, price.close, price.high]);
-    }
-    return;
-  });
+  const charData = bindingData(data);
   return (
     <div className={"my-pretty-chart-container"}>
       <Chart

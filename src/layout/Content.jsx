@@ -83,6 +83,9 @@ const Content = () => {
               </div>
             </ErrorBoundary>
             <div className="d-flex justify-content-around">
+              {chart !== 'PriceTarget' && <Calendar 
+                onChange={(date)=>{setDate(date)}}
+              />}
               <Select
                 native
                 value={chart}
@@ -98,9 +101,6 @@ const Content = () => {
                   );
                 })}
               </Select>
-              {chart !== 'PriceTarget' && <Calendar 
-                onChange={(date)=>{setDate(date)}}
-              />}
             </div>
           </>}
         </div>
