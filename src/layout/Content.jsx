@@ -7,7 +7,7 @@ import Calendar from '../components/Calendar';
 import ErrorBoundary from "../components/ErrorBoundary";
 
 import useFetchDailyPrice from '../data/fetch_daily';
-import {getTodayStr} from '../helpers/utils';
+import {getYesterdayStr} from '../helpers/utils';
 
 
 import Select from '@material-ui/core/Select';
@@ -39,7 +39,7 @@ const Content = () => {
     PriceTarget: PriceTarget
   };
 
-  const [date, setDate] = useState(getTodayStr());
+  const [date, setDate] = useState(getYesterdayStr());
   const [symbol, setSymbol] = useState('AAPL');
   const [chart, setChart] = useState('DailyChart')
   
