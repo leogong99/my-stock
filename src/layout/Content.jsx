@@ -15,7 +15,6 @@ import Select from '@material-ui/core/Select';
 import Logo from '../components/Logo';
 import CandleChart from '../components/CandleChart';
 import DailyChart from '../components/DailyChart';
-import PriceTarget from '../components/PriceTarget';
 
 
 import "./Content.scss";
@@ -28,15 +27,11 @@ const Content = () => {
   }, {
     value: "CandleChart",
     label: "Candle Chart"
-  }, {
-    value: "PriceTarget",
-    label: "Price Table"
   }];
 
   const chartMap = {
     DailyChart: DailyChart,
-    CandleChart: CandleChart,
-    PriceTarget: PriceTarget
+    CandleChart: CandleChart
   };
 
   const [date, setDate] = useState(getYesterdayStr());
@@ -51,11 +46,6 @@ const Content = () => {
 
   const getRenderingComponent = () => {
     const ChartComponent = chartMap[chart];
-    if(chart === 'PriceTarget') {
-      return (
-        <PriceTarget symbol={symbol} />
-      )
-    }
     return (
       <ChartComponent data={data} symbol={symbol}/>
     )
